@@ -5,3 +5,9 @@ body {
 h1 {
   text-align: center;
 }
+{
+  display: flex;
+  justify-content: center; /* Zentriert horizontal */
+  align-items: center; /* Zentriert vertikal */
+  min-height: 100vh; /* Stellt sicher, dass der Body die gesamte Bildschirmhöhe einnimmt */
+}
