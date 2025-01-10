@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gewächshaus-Steuerzentrale</title>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
+  <title>NFT-Gewächshaus</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="container">
-    <h1>Gewächshaus-Steuerzentrale</h1>
+  <h1>NFT-Gewächshaus</h1>
 
-    <div id="daten">
-      <h2>Aktuelle Daten</h2>
-      <p>Temperatur: <span id="temperatur">--</span> °C</p>
-      <p>Luftfeuchtigkeit: <span id="luftfeuchtigkeit">--</span> %</p>
-    </div>
+  <h2>Sensordaten</h2>
+  <p>DHT22 Oben: Temperatur: <span id="dht22oben-temperatur"></span> °C, Luftfeuchtigkeit: <span id="dht22oben-luftfeuchtigkeit"></span> %</p>
+  <p>DHT22 Unten: Temperatur: <span id="dht22unten-temperatur"></span> °C, Luftfeuchtigkeit: <span id="dht22unten-luftfeuchtigkeit"></span> %</p>
+  <p>DHT22 Aussen: Temperatur: <span id="dht22aussen-temperatur"></span> °C, Luftfeuchtigkeit: <span id="dht22aussen-luftfeuchtigkeit"></span> %</p>
 
-    <div id="steuerung">
-      <h2>Steuerung</h2>
-      <button id="licht-an">Licht an</button>
-      <button id="licht-aus">Licht aus</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
