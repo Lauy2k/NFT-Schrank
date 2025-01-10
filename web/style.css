@@ -1,11 +1,11 @@
 body {
-  font-family: sans-serif;
   display: flex;
-  justify-content: center; /* Zentriert horizontal */
-  align-items: center; /* Zentriert vertikal */
-  min-height: 100vh; /* Stellt sicher, dass der Body die gesamte Bildschirmhöhe einnimmt */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 h1 {
-  text-align: center; 
+  text-align: center; /* Zentriert den Text in der H1-Überschrift */
 }
