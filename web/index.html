@@ -1,17 +1,69 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
-  <title>NFT-Gewächshaus</title>
-  <link rel="stylesheet" href="style.css">
+    <title>Sensordaten</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-  <h1>NFT-Gewächshaus</h1>
+    <h1>Sensordaten</h1>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rf</th>
+                <th>Sensor ID</th>
+                <th>Temp</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
 
-  <h2>Sensordaten</h2>
-  <p>DHT22 Oben: Temperatur: <span id="dht22oben-temperatur"></span> °C, Luftfeuchtigkeit: <span id="dht22oben-luftfeuchtigkeit"></span> %</p>
-  <p>DHT22 Unten: Temperatur: <span id="dht22unten-temperatur"></span> °C, Luftfeuchtigkeit: <span id="dht22unten-luftfeuchtigkeit"></span> %</p>
-  <p>DHT22 Aussen: Temperatur: <span id="dht22aussen-temperatur"></span> °C, Luftfeuchtigkeit: <span id="dht22aussen-luftfeuchtigkeit"></span> %</p>
+    <script>
+        function fetchData() {
+            fetch('get_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error(data.error);
+                        document.querySelector("#dataTable tbody").innerHTML = `<tr><td colspan="5">${data.error}</td></tr>`;
+                    } else {
+                        const tableBody = document.querySelector("#dataTable tbody");
+                        tableBody.innerHTML = `
+                            <tr>
+                                <td>${data.id}</td>
+                                <td>${data.Rf}</td>
+                                <td>${data.sensor_id}</td>
+                                <td>${data.Temp}</td>
+                                <td>${data.time}</td>
+                            </tr>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Fehler beim Abrufen der Daten:', error);
+                    document.querySelector("#dataTable tbody").innerHTML = `<tr><td colspan="5">Fehler beim Abrufen der Daten</td></tr>`;
+                });
+        }
+        // Daten beim Laden der Seite abrufen
+        fetchData();
 
-  <script src="js/script.js"></script>
+        // Daten alle 60 Sekunden aktualisieren
+        setInterval(fetchData, 10000);
+    </script>
 </body>
 </html>
+
