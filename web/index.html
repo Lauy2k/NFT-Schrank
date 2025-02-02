@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Sensordaten</title>
@@ -29,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            </tbody>
+        </tbody>
     </table>
 
     <script>
@@ -39,31 +39,33 @@
                 .then(data => {
                     if (data.error) {
                         console.error(data.error);
-                        document.querySelector("#dataTable tbody").innerHTML = `<tr><td colspan="5">${data.error}</td></tr>`;
+                        document.querySelector("#dataTable tbody").innerHTML = `<tr><td cols>
                     } else {
                         const tableBody = document.querySelector("#dataTable tbody");
-                        tableBody.innerHTML = `
-                            <tr>
-                                <td>${data.id}</td>
-                                <td>${data.Rf}</td>
-                                <td>${data.sensor_id}</td>
-                                <td>${data.Temp}</td>
-                                <td>${data.time}</td>
-                            </tr>
-                        `;
+                        tableBody.innerHTML = '';
+                        data.forEach(row => {
+                            tableBody.innerHTML += `
+                                <tr>
+                                    <td>${row.id}</td>
+                                    <td>${row.Rf}</td>
+                                    <td>${row.sensor_id}</td>
+                                    <td>${row.Temp}</td>
+                                    <td>${row.time}</td>
+                                </tr>
+                            `;
+                        });
                     }
                 })
                 .catch(error => {
                     console.error('Fehler beim Abrufen der Daten:', error);
-                    document.querySelector("#dataTable tbody").innerHTML = `<tr><td colspan="5">Fehler beim Abrufen der Daten</td></tr>`;
+                    document.querySelector("#dataTable tbody").innerHTML = `<tr><td colspan=>
                 });
         }
         // Daten beim Laden der Seite abrufen
         fetchData();
 
         // Daten alle 60 Sekunden aktualisieren
-        setInterval(fetchData, 10000);
+        setInterval(fetchData, 60000);
     </script>
 </body>
 </html>
-
