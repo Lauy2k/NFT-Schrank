@@ -36,7 +36,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="raspberry",
-  database="nft_daten"
+  database="sensordaten"
 )
 
 # Cursor erstellen
@@ -72,8 +72,8 @@ if __name__ == "__main__":
       now = time.strftime('%Y-%m-%d %H:%M:%S')
 
       # SQL-Abfrage erstellen
-      sql = "INSERT INTO Wasserstand (Bezeichnung, Wert, Zeit) VALUES (%s, %s, %s)"
-      val = ("Sensor1", distance, now)
+      sql = "INSERT INTO Dist (dist, timestamp) VALUES (%s, %s)"
+      val = (distance, now)
 
       # Abfrage ausführen
       cursor.execute(sql, val)
